@@ -46,3 +46,99 @@ Multithreading : La transcripción se ejecuta en un hilo separado, lo que permit
 Manejo de Errores : El programa maneja errores como la interrupción del flujo de audio y ofrece opciones para recuperarse.
 Comandos de Voz : Implementa comandos simples ("pausar" y "reanudar") para controlar la transcripción.
 Reinicio Automático : Si el flujo de audio se cierra inesperadamente, el programa puede reiniciarlo.
+
+Para que el código funcione correctamente, necesitas descargar e instalar un modelo de Vosk compatible con el idioma y la configuración que estás utilizando. En este caso, el código está configurado para usar un modelo en español (vosk-model-es-0.42). A continuación, te explico cómo obtener y configurar el modelo.
+
+Modelo Vosk Necesario
+El modelo utilizado en el código es:
+
+Nombre del Modelo : vosk-model-es-0.42
+Idioma : Español
+Tamaño : Aproximadamente 50 MB (modelo pequeño y ligero).
+Este modelo está diseñado para reconocimiento de voz en tiempo real y es adecuado para aplicaciones como la transcripción de voz a texto.
+
+Pasos para Descargar e Instalar el Modelo
+Descargar el Modelo
+Ve al repositorio oficial de modelos de Vosk: https://alphacephei.com/vosk/models .
+Busca el modelo vosk-model-es-0.42 (español).
+Haz clic en el enlace para descargarlo. El archivo descargado será un archivo .zip.
+Descomprimir el Modelo
+Una vez descargado, descomprime el archivo .zip en una carpeta de tu elección.
+Por ejemplo, puedes crear una carpeta llamada modelos_vosk en tu directorio de trabajo y colocar el modelo allí:
+Copy
+1
+/ruta/a/tu/proyecto/modelos_vosk/vosk-model-es-0.42
+Configurar la Ruta en el Código
+En el código, asegúrate de que la ruta al modelo coincida con la ubicación donde lo descomprimiste. En el constructor de la clase Transcriptor, la línea relevante es:
+python
+Copy
+1
+self.modelo = vosk.Model("vosk-model-es-0.42")
+Si el modelo está en una carpeta diferente, actualiza la ruta. Por ejemplo:
+python
+Copy
+1
+self.modelo = vosk.Model("/ruta/a/tu/proyecto/modelos_vosk/vosk-model-es-0.42")
+Verificación del Modelo
+Antes de ejecutar el programa, asegúrate de que:
+
+El modelo esté correctamente descomprimido y accesible.
+La ruta especificada en el código sea correcta.
+Tengas instaladas las dependencias necesarias (vosk, pyaudio, etc.).
+Instalación de Dependencias
+Si aún no has instalado las bibliotecas necesarias, puedes hacerlo con los siguientes comandos:
+
+bash
+Copy
+1
+2
+pip install vosk
+pip install pyaudio
+Nota : Si tienes problemas para instalar pyaudio, puedes intentar instalarlo desde un binario precompilado o usar un administrador de paquetes como conda:
+
+bash
+Copy
+1
+conda install pyaudio
+Ejemplo de Estructura de Directorios
+Aquí tienes un ejemplo de cómo podría verse la estructura de tu proyecto:
+
+Copy
+1
+2
+3
+4
+/proyecto_transcripcion/
+    ├── main.py                # Archivo principal con el código
+    ├── modelos_vosk/          # Carpeta para los modelos de Vosk
+    │   └── vosk-model-es-0.42 # Modelo en español descomprimido
+En este caso, la ruta en el código sería:
+
+python
+Copy
+1
+self.modelo = vosk.Model("modelos_vosk/vosk-model-es-0.42")
+Prueba del Código
+Una vez que hayas descargado y configurado el modelo, ejecuta el programa:
+
+bash
+Copy
+1
+python main.py
+Si todo está configurado correctamente, el programa comenzará a escuchar el audio del micrófono y transcribirlo en tiempo real.
+
+Otros Modelos Disponibles
+Si deseas experimentar con otros modelos, aquí tienes algunas opciones adicionales del repositorio de Vosk:
+
+Modelos en Español :
+vosk-model-small-es-0.42: Modelo más pequeño y rápido, pero con menor precisión.
+vosk-model-es-0.42: Modelo estándar (el que estás usando).
+Modelos en Otros Idiomas :
+vosk-model-small-en-us-0.15: Modelo pequeño para inglés (EE.UU.).
+vosk-model-en-us-0.22: Modelo estándar para inglés (EE.UU.).
+Puedes cambiar el modelo en el código simplemente actualizando la ruta y el nombre del modelo.
+
+Conclusión
+El modelo vosk-model-es-0.42 es el adecuado para que el código funcione con el idioma español. Asegúrate de descargarlo, descomprimirlo y configurar la ruta correctamente en el código. Con esto, estarás listo para realizar transcripciones de voz a texto en tiempo real.
+
+
